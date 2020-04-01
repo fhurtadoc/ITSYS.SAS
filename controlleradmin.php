@@ -278,7 +278,7 @@ if (isset($_GET['action'])) {
                      $tipoArray = explode('/', $tipo);
                      $tipofinal=$tipoArray[1];                      
                      if ($tipofinal == "jpeg" || $tipofinal == "png" || $tipofinal== "gif") {                          
-                       if (move_uploaded_file($_FILES['file']["tmp_name"], "img/img_services/" . $nameFile)) {
+                       if (move_uploaded_file($_FILES['file']["tmp_name"], "img/img_services/" . $nameFile_finally)) {
                            $INSERT = "INSERT INTO servicios (name, description, category, imagen ) VALUES('$name', '$description', '$category', '$nameFile_finally')";
                            $result = mysqli_query($conexion, $INSERT);
                            if (!$result) {
@@ -347,7 +347,13 @@ if (isset($_GET['action'])) {
             session_destroy();
             header("location:login.php");
             break;
+
+        
+        
+    
+
     }
 } else {
     header("location:index.php?estado=$estado");
 }
+

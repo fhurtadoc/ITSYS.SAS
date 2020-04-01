@@ -9,7 +9,10 @@ $(document).ready(function(){
             let services= JSON.parse(response);
             services.forEach(service => {            
              var service=`
-             <div class=card>
+             <div class=card style="background-image:linear-gradient(to right,
+                rgba(0, 0, 0, 0.5),
+                rgba(0, 0, 0, 0.5)
+               ),url(../../img/img_services/${service.imagen});">
                 <img src="" alt="">	                
                 <h1>${service.name}</h1>
                 <h2>${service.category}</h2>
@@ -28,15 +31,18 @@ $(document).ready(function(){
         $.get('../../controlleradmin.php?action=list_product', function(response, err){ 
          let products= JSON.parse(response);
          products.forEach(product => {            
-          var product=`
-          <div class=card>
+          var products=`
+          <div class=card style="background-image:linear-gradient(to right,
+            rgba(0, 0, 0, 0.5),
+            rgba(0, 0, 0, 0.5)
+           ),url(../../img/img_services/${product.imagen}); >
                 <img src="" alt="">	                
                 <h1>${product.name}</h1>
                 <h2>${product.category}</h2>
 				<p>${product.description}</p>				
 			</div>
         `
-        $("#cards-pages-products").append(product); 
+        $("#cards-pages-products").append(products); 
              
          });
  

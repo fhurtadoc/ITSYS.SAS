@@ -51,3 +51,45 @@ color: #0062cc;
 font-weight: 600;
 text-decoration: none;
 }
+
+
+.column_gallery {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+  }
+  
+  /* Remove extra left and right margins, due to padding in columns */
+  .row_gallery {margin: 0 -5px;}
+  
+  /* Clear floats after the columns */
+  .row_gallery:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Style the counter cards */
+  .card_gallery {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+    height: 300px;
+    margin-top: 20px;
+  }
+
+  .text-light_volver {
+      margin-left: 50%;
+      color: white;
+      text-decoration: none;
+  }
+  
+  /* Responsive columns - one column layout (vertical) on small screens */
+  @media screen and (max-width: 600px) {
+    .column_gallery {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }

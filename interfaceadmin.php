@@ -31,15 +31,21 @@ if (isset($_GET['estado'])) {
     $permiso = $usuario['permisos'];
     if ($permiso == 'administrador') : ?>
       <ul class="navbar-nav ml-auto">
-        <li><a href="/veiws/admin/perfiladmin.php" class="text-light">crear usuarios</a></li>
+        <li><a href="views/admin/perfiladmin.php" class="text-light">crear usuarios</a></li>
       </ul>
     <?php endif ?>
     <ul class="navbar-nav ml-auto">
       <li><a href="views/admin/perfil.php" class="text-light">cambiar contraseña</a></li>
     </ul>
     <ul class="navbar-nav ml-auto">
+      <li><a href="views/admin/gallery.php" class="text-light">Gestion de Galeria</a></li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
       <li><a href="controlleradmin.php?action=cerrar" class="text-light">cerrar session</a></li>
     </ul>
+
+    
+
 
   </div>
 </nav>

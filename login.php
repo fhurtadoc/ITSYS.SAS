@@ -15,7 +15,10 @@
         margin-left: 200px;
     }
 </style>
-<h1 id="login"> LOGIN ITSYS</h1>
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary text-white">
+  <a class="navbar-brand" href="#">Login Itsys</a>  
+  <a  class="text-light_volver" href="index.php">Volver</a>  
+</nav>
 <div class="container login-container">
     <div class="row">
         <div class="col-md-6 login-form-1">
@@ -30,9 +33,9 @@
                     <input type="password" name="password" id="password">
                 </div>
                 <div class="form-group">
-                    <input type="submit" value="enviar" class="btn btn-primary mb-2 ">
+                    <input type="submit" value="enviar" class="btn bg-primary mb-2 ">
                 </div>
-                <a href="login.php?forgot" class="btn btn-primary mb-2">recordar contraseña</a>
+                <a href="login.php?forgot" class="btn bg-primary mb-2">recordar contraseña</a>
             </form>
         </div>
         <?php if (isset($_GET['estadoForgot'])) : ?>

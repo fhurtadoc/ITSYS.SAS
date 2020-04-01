@@ -30,4 +30,12 @@ CREATE TABLE usuariosadmin(
     CONSTRAINT pk_id PRIMARY KEY (id)
 );
 
+
+CREATE TABLE gallery(
+    id Int (100) auto_increment NOT NULL,
+    nombre VARCHAR(100) NOT NULL,
+    ruta VARCHAR (100) NOT NULL,     
+    CONSTRAINT pk_id PRIMARY KEY (id)    
+);
+
 INSERT INTO usuariosadmin  (id, email, password, permisos) VALUES (1,'admin@admin.com','$2y$10$ns5yO16X9MfebAmuuyWp5uc.Q/9g7eXxiNfahAJ9OfmfPU4uWttX6','administrador');
