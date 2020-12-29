@@ -1,9 +1,9 @@
 <?php
-session_start();
-if (isset($_SESSION['session'])) {
-} else {
-    header("Location: login.php");
-} ?>
+//session_start();
+///if (isset($_SESSION['session'])) {
+//} else {
+//    header("Location: login.php");
+//} ?>
 <?php 
 
 if (isset($_GET['estado'])) {

@@ -7,10 +7,10 @@ include("conexion.php");
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
             //GESTOR DE USUSARIOS
-        case "logout":
+        case "logout":        
             if (!empty($_POST['email'])) {
                 $email = $_POST['email'];
-                $password = rand(75500, 8717700);
+                $password = rand(75500, 871770032156);
                 $permisos = $_POST['permisos'];
                 $estado = 'ok';
                 if ((!is_string($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))) {
