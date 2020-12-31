@@ -1,10 +1,10 @@
 <?php
-//session_start();
-/*if (isset($_SESSION['session'])) {
+session_start();
+if (isset($_SESSION['session'])) {
 } else {
     header("Location: login.php");
-}?>*/
-//<?php include("conexion.php"); ?>
+}?>
+<?php include("conexion.php"); ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -27,13 +27,13 @@
         <span class="navbar-toggler-icon"></span>
       </button>      
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <?php ///$usuario=$_SESSION['session']; 
-        ///$permiso=$usuario['permisos'];
-        ///if($permiso=='administrador'):?>
+        <?php $usuario=$_SESSION['session']; 
+        $permiso=$usuario['permisos'];
+        if($permiso=='administrador'):?>
         <ul class="navbar-nav ml-auto">
             <li><a href="/viws/admin/perfiladmin.php" class="text-light">crear usuarios</a></li>
         </ul>
-        <?php/// endif ?>
+        <?php endif ?>
         <ul class="navbar-nav ml-auto">
             <li><a href="viws/admin/perfil.php"class="text-light">cambiar contraseña</a></li> 
         </ul> 

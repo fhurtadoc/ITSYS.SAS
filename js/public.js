@@ -1,6 +1,8 @@
 $(document).ready(function(){
 
 
+    
+
    //slider 
 
    let slider=document.querySelector(".slider-container");
@@ -36,10 +38,6 @@ $(document).ready(function(){
        }
    }
 
-
-
-
-
    //menu
 
 
@@ -61,7 +59,27 @@ $(document).ready(function(){
         }       
 
     });
-    
+
+
+    //efecto scroll
+
+function mostrarScroll() {
+    let objetoScroll=document.querySelectorAll(".animation");
+        let scrollTop=document.documentElement.scrollTop;
+        for(var i=0; i <objetoScroll.length; i++){
+            let alutaAnimado=objetoScroll[i].offsetTop;
+            if(alutaAnimado -300 <scrollTop){
+                objetoScroll[i].style.opacity=1;
+                objetoScroll[i].classList.add("slogan-animation"); 
+            }else{
+                objetoScroll[i].style.opacity=0;
+                
+            }
+        }
+        
+    }
+
+window.addEventListener('scroll', mostrarScroll);
 
 
 });

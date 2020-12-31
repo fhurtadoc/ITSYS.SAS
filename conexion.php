@@ -1,8 +1,8 @@
 <?php
 
 $host="localhost";
-$user="root";
-$password="";
+$user="itsys";
+$password="12345";
 $db="itsys";
 
 $conexion=mysqli_connect(
