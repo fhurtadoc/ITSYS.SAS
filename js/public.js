@@ -14,7 +14,7 @@ $(document).ready(function(){
 
 
    window.addEventListener("resize", function(){
-       whith=sliderIndividual[0].clientWidth;
+        whith=sliderIndividual[0].clientWidth;
        
    });
 
@@ -68,7 +68,7 @@ function mostrarScroll() {
         let scrollTop=document.documentElement.scrollTop;
         for(var i=0; i <objetoScroll.length; i++){
             let alutaAnimado=objetoScroll[i].offsetTop;
-            if(alutaAnimado -300 <scrollTop){
+            if(alutaAnimado -500 <scrollTop){
                 objetoScroll[i].style.opacity=1;
                 objetoScroll[i].classList.add("slogan-animation"); 
             }else{
