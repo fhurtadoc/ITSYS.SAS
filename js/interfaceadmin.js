@@ -1,12 +1,13 @@
- $(document).ready(function(){
+$(document).ready(function () {
   fretchServices();
   fretchproducts();
-   function fretchServices(){
-       $.get('./controlleradmin.php?action=list_services', function(response, err){                
-           
-           let services= JSON.parse(response);
-           services.forEach(service => {            
-            var service=`
+  function fretchServices() {
+    $.get(
+      "./controlleradmin.php?action=list_services",
+      function (response, err) {
+        let services = JSON.parse(response);
+        services.forEach((service) => {
+          var service = `
             <tr taskId="${service.id}">
             <td>${service.id}</td>
             <td>${service.name}</td>
@@ -22,34 +23,35 @@
            </a>
             </td>
             </tr>
-          `
-          $("#services").append(service); 
-               
-           });
-
-       })
+          `;
+          $("#services").append(service);
+        });
       }
-
-$('#form_services').submit(e=>{
-  e.preventDefault();
-  const postData = {
-    name:$('#name').val(),
-    description:$('#description').val(),
-    category:$('#category').val(),
-    imagen:$('#imagen').val()
+    );
   }
-  $.post('./controlleradmin.php?action=newservice', postData, (response)=>{
-    console.log(response);
-    $('#form_services').trigger('reset');
-      fretchServices();
-  })
-})
 
-function fretchproducts(){
-       $.get('./controlleradmin.php?action=list_product', function(response, err){ 
-        let products= JSON.parse(response);
-        products.forEach(product => {            
-         var product=`
+  $("#form_services").submit((e) => {
+    e.preventDefault();
+    const postData = {
+      name: $("#name").val(),
+      description: $("#description").val(),
+      category: $("#category").val(),
+      imagen: $("#imagen").val(),
+    };
+    $.post("./controlleradmin.php?action=newservice", postData, (response) => {
+      console.log(response);
+      $("#form_services").trigger("reset");
+      fretchServices();
+    });
+  });
+
+  function fretchproducts() {
+    $.get(
+      "./controlleradmin.php?action=list_product",
+      function (response, err) {
+        let products = JSON.parse(response);
+        products.forEach((product) => {
+          var product = `
          <tr>         
          <td>${product.id}</td>
          <td>${product.name}</td>
@@ -65,28 +67,31 @@ function fretchproducts(){
            </a>
          </td>
          </tr>
-       `
-       $("#products").append(product); 
-            
+       `;
+          $("#products").append(product);
         });
+      }
+    );
+  }
 
-    }) 
-  }  
-  
-  $('#form_products').submit(e=>{
-    e.preventDefault();
+  $("#form_products").submit(function () {
+    var formData = new FormData();
+    var archivo = $("#imagen")[0].files[0];
     const postDataProduct = {
-      name:$('#name_product').val(),
-      description:$('#description_product').val(),
-      category:$('#category_product').val(),
-      imagen:$('#imagen_product').val()
-    }
-    $.post('./controlleradmin.php?action=newproduct', postDataProduct, (response)=>{
+      name: $("#name_product").val(),
+      description: $("#description_product").val(),
+      category: $("#category_product").val(),
+    };
+    formData.append("file", archivo);
+    formData.append("postDataProduct", postDataProduct);
+    $.ajax({
+      type: "post",
+      url: "./controlleradmin.php?action=newproduct",
+      data: formData,
+      contentType: false,
+      processData: false,
+    }).done(function (response) {
       console.log(response);
-      $('#form_products').trigger('reset');
-        fretchproducts();
-    })
-  })
-  
-   
- })
+    });
+  });
+});

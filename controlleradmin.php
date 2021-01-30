@@ -121,21 +121,34 @@ if (isset($_GET['action'])) {
         case "newproduct":
             if (isset($_POST)) {
                 $estado = 'ok';
-                if (!empty($_POST['name']) && !empty($_POST['description']) && !empty('category') && !empty('imagen')) {
-                    $name = $_POST['name'];
-                    $description = $_POST['description'];
-                    $category = $_POST['category'];
-                    //$imagen = $_POST['imagen'];
-
+                if (isset($_POST['postDataProduct']) && isset($_FILES['file'])) {
+                    //sacamos la data del formulario y la guardamos en una variable data  
+                    $data = $_POST['postDataProduct'];
+                    //validamos la informacion del formulario antes de subir la imagen al servidor 
+                    $name = $data['name'];
+                    $description = $data['description'];
+                    $category = $data['category'];
                     if (!is_string($name) ||  !is_string($description) ||  !is_string($category) ||  !is_string($imagen)) {
                         $estado = 'la informacion no es correcta';
                     } else {
-                        $INSERT = "INSERT INTO productos(name, description, category, imagen ) VALUES('$name', '$description', '$category', '$imagen')";
-                        $result = mysqli_query($conexion, $INSERT);
-                        if (!$result) {
-                            die('no se ejecuto el query');
-                        } else {
-                            die('nuevo elemento creado');
+                        // creamos el nombre de la imagen 
+                        $nameFile =  $_FILES['file']['name'];
+                        $hoy = date("Ymdhms");
+                        $nameFile_finally = $hoy . "_" . $nombre;
+                        //sacamos el tipo para hacer validacion de tipos de archivos 
+                        $tipo = $_FILES['file']['type'];
+                        $tipofinal = explode("/", $tipo);
+
+                        if ($tipofinal[1] == "jpeg" || $tipofinal[1] == "png" || $tipofinal[1] == "gif") {
+                            if (move_uploaded_file($_FILES["file"]["tmp_name"], "img/img_productos/" . $nombre)) {
+                                $INSERT = "INSERT INTO productos(name, description, category, imagen ) VALUES('$name', '$description', '$category', '$nameFile_finally')";
+                                $result = mysqli_query($conexion, $INSERT);
+                                if (!$result) {
+                                    die('no se ejecuto el query');
+                                } else {
+                                    $estado = "se subio correctamente";
+                                }
+                            }
                         }
                     }
                 } else {
