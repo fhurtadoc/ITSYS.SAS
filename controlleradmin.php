@@ -7,7 +7,7 @@ include("conexion.php");
 if (isset($_GET['action'])) {
     switch ($_GET['action']) {
             //GESTOR DE USUSARIOS
-        case "logout":        
+        case "logout":
             if (!empty($_POST['email'])) {
                 $email = $_POST['email'];
                 $password = rand(75500, 871770032156);
@@ -23,7 +23,6 @@ if (isset($_GET['action'])) {
                     $newUser = mysqli_query($conexion, $INSERT);
                     if ($newUser) {
                         $estado = "se creo el nuevo usuario admin con pass $password";
-                        
                     } else {
                         echo 'no de creo el usuario';
                     }
@@ -126,14 +125,15 @@ if (isset($_GET['action'])) {
                     $name = $_POST['name'];
                     $description = $_POST['description'];
                     $category = $_POST['category'];
-                    $imagen = $_POST['imagen'];
+                    //$imagen = $_POST['imagen'];
+
                     if (!is_string($name) ||  !is_string($description) ||  !is_string($category) ||  !is_string($imagen)) {
                         $estado = 'la informacion no es correcta';
                     } else {
                         $INSERT = "INSERT INTO productos(name, description, category, imagen ) VALUES('$name', '$description', '$category', '$imagen')";
                         $result = mysqli_query($conexion, $INSERT);
                         if (!$result) {
-                            die( 'no se ejecuto el query');
+                            die('no se ejecuto el query');
                         } else {
                             die('nuevo elemento creado');
                         }
@@ -150,8 +150,8 @@ if (isset($_GET['action'])) {
             //lista de productos
         case "list_product":
             if (isset($_GET)) {
-                $query="SELECT* FROM productos";
-                $result=mysqli_query($conexion,$query);
+                $query = "SELECT* FROM productos";
+                $result = mysqli_query($conexion, $query);
                 if (!$result) {
                     die('Query Failed');
                 }
@@ -161,9 +161,9 @@ if (isset($_GET['action'])) {
                         'id' => $row['id'],
                         'name' => $row['name'],
                         'description' => $row['description'],
-                        'category'=>$row['category'],
-                        'imagen'=>$row['imagen']
-                        
+                        'category' => $row['category'],
+                        'imagen' => $row['imagen']
+
                     );
                 }
                 $jsonstring = json_encode($json);
@@ -179,25 +179,25 @@ if (isset($_GET['action'])) {
                 $estado = 'ok';
                 if (!empty($_GET['id'])) {
                     $id = (int)$_GET['id'];
-                    $DELETE = "DELETE FROM productos WHERE id=$id";                    
-                    $result = mysqli_query($conexion, $DELETE);                    
+                    $DELETE = "DELETE FROM productos WHERE id=$id";
+                    $result = mysqli_query($conexion, $DELETE);
                     if (!$result) {
                         die('Query Failed.');
                     }
                 } else {
                     echo "Task Deleted Successfully";
-                }                
+                }
             }
-        break;
-        
+            break;
+
             //GESTOR DE SERVICIOS
 
             //lista de serviciso
 
         case "list_services":
-            if (isset($_GET)) {                               
-                $query="SELECT* FROM servicios";
-                $result=mysqli_query($conexion,$query);
+            if (isset($_GET)) {
+                $query = "SELECT* FROM servicios";
+                $result = mysqli_query($conexion, $query);
                 if (!$result) {
                     die('Query Failed');
                 }
@@ -206,8 +206,8 @@ if (isset($_GET['action'])) {
                     $json[] = array(
                         'name' => $row['name'],
                         'description' => $row['description'],
-                        'category'=>$row['category'],
-                        'imagen'=>$row['imagen'],
+                        'category' => $row['category'],
+                        'imagen' => $row['imagen'],
                         'id' => $row['id']
                     );
                 }
@@ -231,7 +231,7 @@ if (isset($_GET['action'])) {
                         if (!$result) {
                             die('no se ejecuto el query');
                         } else {
-                            echo "Successfully";  
+                            echo "Successfully";
                         }
                     }
                 } else {
@@ -249,22 +249,22 @@ if (isset($_GET['action'])) {
                 $estado = 'ok';
                 if (!empty($_GET['id'])) {
                     $id = (int)$_GET['id'];
-                    $DELETE = "DELETE FROM servicios WHERE id=$id";                    
-                    $result = mysqli_query($conexion, $DELETE);                    
+                    $DELETE = "DELETE FROM servicios WHERE id=$id";
+                    $result = mysqli_query($conexion, $DELETE);
                     if (!$result) {
                         die('Query Failed.');
                     }
                 } else {
                     echo "Task Deleted Successfully";
-                }                
+                }
             }
-        break;
+            break;
 
         case "cerrar":
             session_start();
             session_destroy();
-            header("location:login.php");            
-        break;    
+            header("location:login.php");
+            break;
     }
 } else {
     header("location:index.php?estado=$estado");

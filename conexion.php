@@ -1,18 +1,18 @@
 <?php
 
-$host="localhost";
-$user="itsys";
-$password="12345";
-$db="itsys";
+$host = "localhost";
+//$user="itsys";
+$user = "root";
+//$password="12345";
+$password = "";
+$db = "itsys";
 
-$conexion=mysqli_connect(
+$conexion = mysqli_connect(
   $host,
   $user,
   $password,
-  $db   
+  $db
 );
 if ($conexion->connect_errno) {
   die('Connect Error: ' . $conexion->connect_errno);
 }
-
-
