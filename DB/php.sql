@@ -30,4 +30,4 @@ CREATE TABLE usuariosadmin(
     CONSTRAINT pk_id PRIMARY KEY (id)
 );
 
-INSERT INTO usuariosadmin (id="1", email="admin@admin.com", password="$10$ouZqIlYzOJVem344.6Zomey76.opv9wr69Lq64uJxydbbhduzO6Ly", permisos="administrador" );
+INSERT INTO usuariosadmin  (id, email, password, permisos) VALUES (1,'admin@admin.com','$10$ouZqIlYzOJVem344.6Zomey76.opv9wr69Lq64uJxydbbhduzO6Ly','administrador');

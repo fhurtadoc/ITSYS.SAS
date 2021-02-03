@@ -1,10 +1,10 @@
 <?php
 
 $host = "localhost";
-//$user="itsys";
-$user = "root";
-//$password="12345";
-$password = "";
+$user="itsys";
+$password="12345";
+//$user = "root";
+//$password = "";
 $db = "itsys";
 
 $conexion = mysqli_connect(

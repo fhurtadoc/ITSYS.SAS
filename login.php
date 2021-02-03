@@ -3,7 +3,7 @@
 <head>    
     <title>Login</title>
 </head>
-<?php include_once 'viws/includes/header.php'; ?>
+<?php include_once 'views/includes/header.php'; ?>
 <?php if (isset($_GET['estado'])) : ?>
     <?php $estado = $_GET['estado'];
     if ($estado = 'email' || $estado = 'password') : ?>

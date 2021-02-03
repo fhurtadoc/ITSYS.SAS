@@ -35,7 +35,7 @@ if (isset($_GET['estado'])) {
       </ul>
     <?php endif ?>
     <ul class="navbar-nav ml-auto">
-      <li><a href="viws/admin/perfil.php" class="text-light">cambiar contraseña</a></li>
+      <li><a href="views/admin/perfil.php" class="text-light">cambiar contraseña</a></li>
     </ul>
     <ul class="navbar-nav ml-auto">
       <li><a href="controlleradmin.php?action=cerrar" class="text-light">cerrar session</a></li>
