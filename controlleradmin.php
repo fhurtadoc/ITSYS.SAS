@@ -128,7 +128,7 @@ if (isset($_GET['action'])) {
                     $name = $data['name'];
                     $description = $data['description'];
                     $category = $data['category'];
-                    if (!is_string($name) ||  !is_string($description) ||  !is_string($category) ||  !is_string($imagen)) {
+                    if (!is_string($name) ||  !is_string($description) ||  !is_string($category)) {
                         $estado = 'la informacion no es correcta';
                     } else {
                         // creamos el nombre de la imagen 
@@ -138,7 +138,6 @@ if (isset($_GET['action'])) {
                         //sacamos el tipo para hacer validacion de tipos de archivos 
                         $tipo = $_FILES['file']['type'];
                         $tipofinal = explode("/", $tipo);
-
                         if ($tipofinal[1] == "jpeg" || $tipofinal[1] == "png" || $tipofinal[1] == "gif") {
                             if (move_uploaded_file($_FILES["file"]["tmp_name"], "img/img_productos/" . $nombre)) {
                                 $INSERT = "INSERT INTO productos(name, description, category, imagen ) VALUES('$name', '$description', '$category', '$nameFile_finally')";
