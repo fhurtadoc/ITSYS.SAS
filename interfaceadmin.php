@@ -31,7 +31,7 @@ if (isset($_GET['estado'])) {
     $permiso = $usuario['permisos'];
     if ($permiso == 'administrador') : ?>
       <ul class="navbar-nav ml-auto">
-        <li><a href="/viws/admin/perfiladmin.php" class="text-light">crear usuarios</a></li>
+        <li><a href="/veiws/admin/perfiladmin.php" class="text-light">crear usuarios</a></li>
       </ul>
     <?php endif ?>
     <ul class="navbar-nav ml-auto">
