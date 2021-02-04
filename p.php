@@ -1,5 +1,5 @@
 <?php
-print_r($_FILES['file']);
+/*print_r($_FILES['file']);
 echo $_POST['numero'] . "<br>";
 
 if (isset($_FILES['file'])) {
@@ -16,4 +16,15 @@ if (isset($_FILES['file'])) {
             echo "img/img_productos/" . $nombre;
         }
     };
+}*/
+
+if(!empty($_POST['password'])){
+    $password=$_POST['password'];
+    echo $password;
+    $hash = password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
+    echo $hash;
 }
+
+
+
+

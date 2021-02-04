@@ -30,21 +30,33 @@ $(document).ready(function () {
     );
   }
 
-  $("#form_services").submit((e) => {
-    e.preventDefault();
-    const postData = {
-      name: $("#name").val(),
-      description: $("#description").val(),
-      category: $("#category").val(),
-      imagen: $("#imagen").val(),
-    };
-    $.post("./controlleradmin.php?action=newservice", postData, (response) => {
+  $('#form_services').submit(e => {
+    e.preventDefault();    
+    let  formData = new FormData();
+    let archivo = $('#imagen')[0].files[0];            
+    let name= $("#name").val();
+    let description= $("#description").val();
+    let category= $("#category").val();
+        
+    formData.append("file", archivo);
+    formData.append("name", name);
+    formData.append("description", description);
+    formData.append("category", category);
+  
+    $.ajax({
+      type: "post",
+      url: "../controlleradmin.php?action=newservice",
+      data: formData,
+      contentType: false,
+      processData: false,
+    }).done(function (response) {
       console.log(response);
-      $("#form_services").trigger("reset");
-      fretchServices();
+      
     });
   });
 
+
+  
   function fretchproducts() {
     $.get(
       "./controlleradmin.php?action=list_product",
@@ -74,24 +86,30 @@ $(document).ready(function () {
     );
   }
 
-  $("#form_products").submit(function () {
-    var formData = new FormData();
-    var archivo = $("#imagen")[0].files[0];
-    const postDataProduct = {
-      name: $("#name_product").val(),
-      description: $("#description_product").val(),
-      category: $("#category_product").val(),
-    };
+  $('#form_products').submit(e => {
+    e.preventDefault();    
+    let  formData = new FormData();
+    let archivo = $('#imagen_product')[0].files[0];            
+    let name= $("#name_product").val();
+    let description= $("#description_product").val();
+    let category= $("#category_product").val();
+        
     formData.append("file", archivo);
-    formData.append("postDataProduct", postDataProduct);
+    formData.append("name", name);
+    formData.append("description", description);
+    formData.append("category", category);
+  
     $.ajax({
       type: "post",
-      url: "./controlleradmin.php?action=newproduct",
+      url: "../controlleradmin.php?action=newproduct",
       data: formData,
       contentType: false,
       processData: false,
     }).done(function (response) {
       console.log(response);
+      
     });
   });
+
+
 });

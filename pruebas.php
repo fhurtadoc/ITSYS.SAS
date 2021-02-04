@@ -13,7 +13,16 @@
     <input type="text" name="numero" id="numero">
     <input type="file" name="imagen" id="imagen">
     <button id="insertar">Continuar</button>
+
+<form action="p.php" method="post" >
+<input type="text" name="password" id="password">
+<input type="submit" value="enviar">
+</form>
+
+    
 </body>
+
+
 
 </html>
 <script>

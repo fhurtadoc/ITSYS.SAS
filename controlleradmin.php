@@ -118,10 +118,42 @@ if (isset($_GET['action'])) {
 
             //GESTOR DE PRODUCTOS
             // nuevo producto
-        case "newproduct":
-            if (isset($_POST)) {
-                $estado = 'ok';
-                if (isset($_POST['postDataProduct']) && isset($_FILES['file'])) {
+        case "newproduct":            
+                
+             if(isset($_POST['name'])&& isset($_POST['description'])&& isset($_POST['category'])&& isset($_FILES['file'])){
+                 $name=$_POST['name'];
+                 $description=$_POST['description'];
+                 $category=$_POST['category'];                
+                 if (!is_string($name) ||  !is_string($description) ||  !is_string($category)) {
+                     echo "ingresar nombre descripcion y categoria";
+                 }else{
+                      // creamos el nombre de la imagen 
+                      $nameFile =  $_FILES['file']['name'];
+                      $hoy = date("Ymdhms");
+                      $nameFile_finally = $hoy . "_" . $nameFile;
+                      //sacamos el tipo para hacer validacion de tipos de archivos 
+                      $tipo = $_FILES['file']['type'];
+                      $tipoArray = explode('/', $tipo);
+                      $tipofinal=$tipoArray[1];                      
+                      if ($tipofinal == "jpeg" || $tipofinal == "png" || $tipofinal== "gif") {                          
+                        if (move_uploaded_file($_FILES['file']["tmp_name"], "img/img_productos/" . $nameFile)) {
+                            $INSERT = "INSERT INTO productos(name, description, category, imagen ) VALUES('$name', '$description', '$category', '$nameFile_finally')";
+                            $result = mysqli_query($conexion, $INSERT);
+                            if (!$result) {
+                                echo'no se ejecuto el query';
+                            } else {
+                                echo "se subio correctamente ";
+                            }
+                        }
+
+                      
+                 }
+
+
+                }
+            }    
+                   
+                /*if (isset($_POST['postDataProduct']) && isset($_FILES['file'])) {
                     //sacamos la data del formulario y la guardamos en una variable data  
                     $data = $_POST['postDataProduct'];
                     //validamos la informacion del formulario antes de subir la imagen al servidor 
@@ -129,7 +161,7 @@ if (isset($_GET['action'])) {
                     $description = $data['description'];
                     $category = $data['category'];
                     if (!is_string($name) ||  !is_string($description) ||  !is_string($category)) {
-                        $estado = 'la informacion no es correcta';
+                        echo 'la informacion no es correcta';
                     } else {
                         // creamos el nombre de la imagen 
                         $nameFile =  $_FILES['file']['name'];
@@ -143,20 +175,22 @@ if (isset($_GET['action'])) {
                                 $INSERT = "INSERT INTO productos(name, description, category, imagen ) VALUES('$name', '$description', '$category', '$nameFile_finally')";
                                 $result = mysqli_query($conexion, $INSERT);
                                 if (!$result) {
-                                    die('no se ejecuto el query');
+                                    $estado('no se ejecuto el query');
                                 } else {
                                     $estado = "se subio correctamente";
                                 }
                             }
+                        }else{
+                            echo "el formato no es correcto";
                         }
                     }
                 } else {
-                    $estado = 'no se ingreso informacion';
+                    echo 'no se ingreso informacion';
                 }
-                if ($estado != 'ok') {
+                if ($estado == 'ok') {
                     header("location:interfaceadmin.php?estado=$estado");
                 }
-            }
+            }*/
             break;
 
             //lista de productos
@@ -228,7 +262,43 @@ if (isset($_GET['action'])) {
             }
             break;
         case "newservice":
-            if (isset($_POST)) {
+            if(isset($_POST['name'])&& isset($_POST['description'])&& isset($_POST['category'])&& isset($_FILES['file'])){
+                $name=$_POST['name'];
+                $description=$_POST['description'];
+                $category=$_POST['category'];                
+                if (!is_string($name) ||  !is_string($description) ||  !is_string($category)) {
+                    echo "ingresar nombre descripcion y categoria";
+                }else{
+                     // creamos el nombre de la imagen 
+                     $nameFile =  $_FILES['file']['name'];
+                     $hoy = date("Ymdhms");
+                     $nameFile_finally = $hoy . "_" . $nameFile;
+                     //sacamos el tipo para hacer validacion de tipos de archivos 
+                     $tipo = $_FILES['file']['type'];
+                     $tipoArray = explode('/', $tipo);
+                     $tipofinal=$tipoArray[1];                      
+                     if ($tipofinal == "jpeg" || $tipofinal == "png" || $tipofinal== "gif") {                          
+                       if (move_uploaded_file($_FILES['file']["tmp_name"], "img/img_services/" . $nameFile)) {
+                           $INSERT = "INSERT INTO servicios (name, description, category, imagen ) VALUES('$name', '$description', '$category', '$nameFile_finally')";
+                           $result = mysqli_query($conexion, $INSERT);
+                           if (!$result) {
+                               echo'no se ejecuto el query';
+                           } else {
+                               echo "se subio correctamente ";
+                           }
+                       }
+
+                     
+                }
+
+
+               }
+           }
+
+
+
+
+            /*if (isset($_POST)) {
                 $estado = 'ok';
                 if (!empty($_POST['name']) && !empty($_POST['description']) && !empty('category') && !empty('imagen')) {
                     $name = $_POST['name'];
@@ -252,7 +322,7 @@ if (isset($_GET['action'])) {
                 if ($estado != 'ok') {
                     header("location:interfaceadmin.php?estado=$estado");
                 }
-            }
+            }*/
 
             break;
 
