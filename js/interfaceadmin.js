@@ -1,6 +1,7 @@
-$(document).ready(function () {
+$(document).ready(function () { 
   fretchServices();
   fretchproducts();
+  fretchimages();
   function fretchServices() {
     $.get(
       "./controlleradmin.php?action=list_services",
@@ -110,6 +111,28 @@ $(document).ready(function () {
       
     });
   });
+
+  function fretchimages() {
+    
+    $.get(
+      "../controlleradmin.php?action=select_image",      
+      function (response, err) {
+        let images = JSON.parse(response);
+        console.log(response);
+        images.forEach((image) => {
+          var image_style = `
+         <div class="column_gallery">
+         <div class="card_gallery">
+         <h2>${image.nombre}</h2>
+         <button type="button" class="btn btn-danger"> <a href="./controlleradmin.php?action=delete_image&id=${image.id}" class="task-delete btn btn-danger">
+         Delete</a></button>         
+         </div>
+       `;
+          $("#row_gallery").append(image_style);
+        });
+      }
+    );
+  }
 
 
 });

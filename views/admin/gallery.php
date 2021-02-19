@@ -26,44 +26,18 @@ if (isset($_GET['estado'])) {
 <div class="container">
       <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Subir Nueva Imagen</button>
       <div id="demo" class="collapse">
-         <form action="" id="crearimagen">
+         <form action="../../controlleradmin.php?action=insert_image" id="crearimagen" method="POST" enctype="multipart/form-data">
            <label for="nombre">nombre</label>
            <input type="text" id="nombre" name="nombre"> </br>
-           <label for="imagen_gallery">imagen</label> 
+           <label for="imagen">imagen</label> 
            <input type="file" name="imagen" id="imagen_gallery">
-           <input type="submit" value="enviar">
+           <input type="submit" value="Enviar">
          </form>
      </div>
    </div>
 
-<div class="row_gallery">
-  <div class="column_gallery">
-    <div class="card_gallery">
-    <button type="button" class="btn btn-danger">Eliminar</button>
-    <button type="button" class="btn btn-primary active">Editar</button>
-    </div>
-  </div>
-  <div class="column_gallery">
-    <div class="card_gallery">..</div>
-  </div>
-  <div class="column_gallery">
-    <div class="card_gallery">..</div>
-  </div>
-  <div class="column_gallery">
-    <div class="card_gallery">..</div>
-  </div>
-  <div class="column_gallery">
-    <div class="card_gallery">..</div>
-  </div>
-  <div class="column_gallery">
-    <div class="card_gallery">..</div>
-  </div>
-  <div class="column_gallery">
-    <div class="card_gallery">..</div>
-  </div>
-  <div class="column_gallery">
-    <div class="card_gallery">..</div>
-  </div>
+<div class="row_gallery" id="row_gallery">
+  
 </div> 
 
   

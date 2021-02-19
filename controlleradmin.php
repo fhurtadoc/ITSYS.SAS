@@ -136,7 +136,7 @@ if (isset($_GET['action'])) {
                       $tipoArray = explode('/', $tipo);
                       $tipofinal=$tipoArray[1];                      
                       if ($tipofinal == "jpeg" || $tipofinal == "png" || $tipofinal== "gif") {                          
-                        if (move_uploaded_file($_FILES['file']["tmp_name"], "img/img_productos/" . $nameFile)) {
+                        if (move_uploaded_file($_FILES['file']["tmp_name"], "img/img_productos/" . $nameFile_finally)) {
                             $INSERT = "INSERT INTO productos(name, description, category, imagen ) VALUES('$name', '$description', '$category', '$nameFile_finally')";
                             $result = mysqli_query($conexion, $INSERT);
                             if (!$result) {
@@ -346,10 +346,76 @@ if (isset($_GET['action'])) {
             session_start();
             session_destroy();
             header("location:login.php");
+            break;       
+
+
+        case "select_image":    
+            if (isset($_GET)) {
+                $estado="ok";
+                $query = "SELECT * FROM gallery";
+                $result = mysqli_query($conexion, $query);
+                if (!$result) {
+                    die('Query Failed');
+                }
+                echo $result;
+                $json = array();
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $json[] = array(
+                        'nombre' => $row['nombre'],
+                        'ruta' => $row['ruta'],                        
+                    );
+                }
+                $jsonstring = json_encode($json);
+                echo $jsonstring;
+            }
+            break;        
+
+        case "insert_image":   
+            if (isset($_GET)) {
+                $estado="ok";                
+            if(isset($_POST['nombre']) && isset($_FILES['imagen'])){
+                $nombre=$_POST['nombre'];                         
+                $nameFile=$_FILES['imagen']['name'];
+                $hoy = date("Ymdhms");
+                $nameFile_finally = $hoy . "_" . $nameFile;
+                $tipo=$_FILES['imagen']['type'];                
+                $tipoArray = explode('/', $tipo);
+                $tipofinal=$tipoArray[1];                 
+                if($tipofinal=="jpg" || $tipofinal=="jpeg" || $tipofinal=="png" || $tipofinal=="git"){
+                    
+                    if (move_uploaded_file($_FILES['imagen']["tmp_name"], "img/images_gallery/" . $nameFile_finally)) {                        
+                        $INSERT = "INSERT INTO gallery (nombre, ruta) VALUES('$nombre', '$nameFile_finally')";
+                        $result = mysqli_query($conexion, $INSERT);                  
+                        $estado="imagen se subio correctamente";
+                        header("Refresh: 5; URL=views/admin/gallery.php?estado=$estado");
+                    }                   
+                }else{
+                    $estado="imagen no cumple con el formato";
+                    header("Refresh: 5; URL=views/admin/gallery.php?estado=$estado");
+                }
+
+            }
+            }
+            
             break;
 
-        
-        
+        case "update_image":            
+
+        case "delete_image":  
+            if (isset($_GET)) {
+                $estado = 'ok';
+                if (!empty($_GET['id'])) {
+                    $id = (int)$_GET['id'];
+                    $DELETE = "DELETE FROM gallery WHERE id=$id";
+                    $result = mysqli_query($conexion, $DELETE);
+                    if (!$result) {
+                        die('Query Failed.');
+                    }
+                } else {
+                    echo "Task Deleted Successfully";
+                }
+            }
+            break; 
     
 
     }
