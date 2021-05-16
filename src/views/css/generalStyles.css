@@ -1,0 +1,25 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+
+
+:root{
+    --blue: #2196f3;
+    --white: #ffffff;
+    --fondo: #e7e9eb;
+    --marco: #9acef8;
+    --letra: #282a35;
+} 
+
+@font-face{
+    font-family: "text";
+    src: url("Newsreader-Italic-VariableFont_opsz,wght.ttf");
+}
+
+body{
+    background-color: var(--fondo) !important;
+    color: var(--letra) !important;
+    font-family: "text";    
+}
