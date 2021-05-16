@@ -1,17 +1,18 @@
 <?php
-include_once("conexion");
+include_once("conexion.php");
 
 class User{
     private $name;
     private $email;   
     private $password;
     private $permisos;        
-    var $db= new Conexion;
+    
 
     public function __construct(){         
     }      
 
     public function insert($name, $email, $password, $permisos){ 
+        $db= new Conexion;
         $this->$name=$name;
         $this->$email=$email;
         $this->$password=$password;
@@ -19,7 +20,7 @@ class User{
 
         $sql="INSERT INTO usuarios (name, email, password, permisos)
         VALUES ( $this->$name, $this->$email, $this->$password, $this->$permisos)";
-        $res=$this->db->query($sql);
+        $res=$db->query($sql);
         if($res){
             return $res;
         }else{
@@ -29,10 +30,10 @@ class User{
 
 
     public function select ($params){ 
-        
+        $db= new Conexion;
         $params= explode( ", " , $params); 
         $sql="SELECT  $params FROM usuarios ";
-        $res=$this->db->getArray($sql);
+        $res=$db->getArray($sql);
         if($res){
             return $res;
         }else{
@@ -41,10 +42,10 @@ class User{
     }    
     
     public function selectbyparam($params, $param, $paramid){ 
-        
+        $db= new Conexion;
         $params= explode( ", " , $params); 
         $sql="SELECT  $params FROM usuarios Where $param=$paramid";
-        $res=$this->db->getArray($sql);
+        $res=$db->getArray($sql);
         if($res){
             return $res;
         }else{
@@ -54,6 +55,7 @@ class User{
 
 
     public function update($query){ 
+        $db= new Conexion;
         $sql=$query;
         $res=$this->db->query($sql);
         if($res){
@@ -64,8 +66,9 @@ class User{
     } 
     
     public function delete($id){ 
+        $db= new Conexion;
         $sql="DELETE FROM usuarios WHERE id=$id";
-        $res=$this->db->query($sql);
+        $res=$db->query($sql);
         if($res){
             return $res;
         }else{

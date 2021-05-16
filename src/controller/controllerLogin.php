@@ -1,8 +1,8 @@
 <?php
 include_once("../model/usuarios.php");
-
+echo $_GET['action'];
 if(isset($_GET['action'])){
-    $newuser=new User;
+    $newuser=new User();
     switch($_GET['action']){
 
             case "logout":
