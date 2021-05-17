@@ -6,17 +6,22 @@
 
 
 :root{
-    --blue: #2196f3;
-    --white: #ffffff;
-    --fondo: #e7e9eb;
-    --marco: #9acef8;
-    --letra: #282a35;
+    --primary: #007bff;    
+    --fondo: #f8f9fa;    
+    --dark: #343a40;
+    --secondary:#6c757d;
+    --success:#28a745;
+    --danger:#dc3545;
 } 
 
 
 
 body{
     background-color: var(--fondo) !important;
-    color: var(--letra) !important;
-    font-family: "text";    
+    color: var(--dark) !important;     
+}
+
+.continer{
+    text-align: center;
+    padding-top: 50px;
 }

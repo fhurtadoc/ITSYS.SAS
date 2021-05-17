@@ -1,3 +1,9 @@
+
+function modalForgot() {
+    $("#exampleModal").modal("show")    
+}
+
+
 function login(){
     let email=$("#email").val()
     let pass=$("#pass").val()
@@ -15,3 +21,4 @@ function login(){
         console.log(res);        
     })
 }
+
