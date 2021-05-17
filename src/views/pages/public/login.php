@@ -19,18 +19,18 @@
                     <div class="card-body">
                             <form>
                                 <h3>LOGIN ITSYS.SAS </h3>
-                                <img src="" alt="">
+                                <img src="../../../views/css/img/logoprincipal.png" alt="ITSYS" width="70" height="40" >
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Email</label>
-                                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">                                    
+                                    <label for="Email">Email</label>
+                                    <input type="email" class="form-control" id="Email_login" aria-describedby="emailHelp" placeholder="Enter email">                                    
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                    <input type="password" class="form-control" id="Password_login" placeholder="Password">
                                 </div>                                                                                                
                             </form>                            
                 </div>
-                    <button class="btn btn-primary">Entrar</button>                    
+                    <button class="btn btn-primary" onclick="login()">Entrar</button>                    
                 </div> 
                 <button type="button" class="btn btn-link" data-dismiss="modal" onclick="modalForgot()">recordar contraseña</button>                
             </div>            
@@ -49,10 +49,10 @@
                     <form>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Email</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">                                    
+                            <input type="email" class="form-control" id="recuperarEmail" aria-describedby="emailHelp" placeholder="Enter email">                                    
                         </div> 
                         <div class="form-group">                                               
-                            <button type="button" class="btn btn-primary" onclick="Forgot()">Recuperar Contraseña</button>                            
+                            <button type="button" class="btn btn-primary" onclick="forgot()" style="margin-top:30px ;">Recuperar Contraseña</button>                            
                         </div>                                                    
                     </form>    
             </div>

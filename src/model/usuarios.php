@@ -31,7 +31,7 @@ class User{
 
     public function select ($params){ 
         $db= new Conexion;
-        $params= explode( ", " , $params); 
+        $params= implode( ", " , $params); 
         $sql="SELECT  $params FROM usuarios ";
         $res=$db->getArray($sql);
         if($res){
@@ -43,11 +43,11 @@ class User{
     
     public function selectbyparam($params, $param, $paramid){ 
         $db= new Conexion;
-        $params= explode( ", " , $params); 
-        $sql="SELECT  $params FROM usuarios Where $param=$paramid";
-        $res=$db->getArray($sql);
+        $params_string= implode( ", " , $params); 
+        $sql="SELECT $params_string FROM usuarios Where $param='$paramid'";
+        $res=$db->getArray($sql);        
         if($res){
-            return $res;
+            return $res;            
         }else{
 
         }

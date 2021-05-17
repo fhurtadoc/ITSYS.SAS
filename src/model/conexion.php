@@ -2,7 +2,7 @@
 class Conexion{
     private $host   ="localhost";
     private $usuario="itsys";
-    private $clave  ="12345";
+    private $clave  ="123";
     private $db     ="itsys";
     public $conexion;
 
@@ -19,7 +19,7 @@ class Conexion{
 
         $resultado=$this->conexion->query($query);        
         if($resultado){
-            return $resultado->fetch_all(MYSQLI_ASSOC); 
+            return $resultado; 
         }
             
         
@@ -30,7 +30,7 @@ class Conexion{
 
         $resultado=$this->conexion->query($query);        
         if($resultado){
-            return $resultado;
+            return $resultado->fetch_all(MYSQLI_ASSOC);
         }
 
     }

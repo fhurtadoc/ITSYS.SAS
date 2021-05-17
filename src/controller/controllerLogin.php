@@ -1,6 +1,5 @@
 <?php
 include_once("../model/usuarios.php");
-echo $_GET['action'];
 if(isset($_GET['action'])){
     $newuser=new User();
     switch($_GET['action']){
@@ -32,7 +31,7 @@ if(isset($_GET['action'])){
                 }else{
                     $estado=array("http"=>400, "mensaje"=>"ingrese correo y nombre del nuevo usuario");
                 }  
-                return json_encode($estado); 
+                echo json_encode($estado); 
 
             break;
 
@@ -43,35 +42,30 @@ if(isset($_GET['action'])){
             case "login":
                 $estado =[];                    
                     $email = $_POST['email'];
-                    $password = $_POST['password'];                        
+                    $password = $_POST['password'];                       
 
                     if ((!is_string($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))) {
+
                         $estado=array("http"=>400, "mensaje"=>"ingresar un correo");
                     }
 
-                    if (!is_string($password) ||  strlen($password) < 5) {
-
-                        $estado=array("http"=>400, "mensaje"=>"ingresar un pass");
-                    }
+                   
 
                     $params=["name", "email", "password", "permisos"];
-                    $seletby=$newuser->selectbyparam($params, "email", $email);
-
+                    $seletby=$newuser->selectbyparam($params, "email", $email);                    
                     if($seletby){
 
-                        $hashDB = $seletby['password'];
+                        $hashDB = $seletby[0]['password'];
 
                         if (password_verify($password, $hashDB)) {
                             session_start();
                             $_SESSION['USUARIO'] = $seletby;
-                            header("location:interfaceadmin.php");
+                            $estado=array("http"=>200, "mensaje"=>"contraseña correcta");                            
+                        }else{
+                            $estado=array("http"=>400, "mensaje"=>"contraseña esta erronea");
                         }
-
-                    }else{
-                        $estado=array("http"=>400, "mensaje"=>"contraseña esta erronea");
-                        header("location:login.php?estado=$estado");
                     }
-                
+                echo json_encode($estado); 
             break; 
             
             
@@ -83,21 +77,21 @@ if(isset($_GET['action'])){
                         $estadoForgot = 'email';
                     } else {
                         $params=["name", "email", "password", "permisos"];
-                        $seletby=$newuser->selectbyparam($params, "email", $email);
-                        $emailDB = $seletby['email'];
-                        $hashDB = $seletby['password'];
+                        $seletby=$newuser->selectbyparam($params, "email", $email);                         
+                        $emailDB = $seletby[0]['email'];
+                        $hashDB = $seletby[0]['password'];
                         if ($email == $emailDB) {
                             $passDB = password_get_info($hashDB);
                             //$send=mail( $email, $subject= "hola desde php", $message= "su constraseña es: $passDB['algo']");  
                             $estado=array("http"=>200, "mensaje"=>"por favor revise su correo");                                          
-                            header("location:login.php?estadoForgot=$estado");
+                            
                         } else {
                             $estado=array("http"=>400, "mensaje"=>"el correo no esta registrado");
-                            header("location:login.php?estadoForgot=$estado");
+                            
                         }
                     }                    
                 }
-    
+                echo json_encode($passDB); 
                 break;
 
             
