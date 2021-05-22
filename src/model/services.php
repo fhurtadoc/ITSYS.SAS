@@ -33,6 +33,7 @@ class Services{
 
     public function select ($params){ 
         
+        
         $params= explode( ", " , $params); 
         $sql="SELECT  $params FROM services ";
         $res=$this->db->getArray($sql);

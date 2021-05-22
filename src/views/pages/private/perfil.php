@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <?php include_once("../../includes/headers.php") ?>      
-    <link rel="stylesheet" href="../../css/admin.css">    
+    <link rel="stylesheet" href="../../css/admin.css"> 
+    
 </head>
 <body>
-    <div class="container">
-        <div class="row">            
-                <nav class="navbar navbar-expand-lg navbar-dark  bg-primary">
+    <div class="container">        
+                <nav class=" navbar navbar-expand-lg navbar-dark  bg-primary">
                     <a class="navbar-brand" href="#">ITSYS</a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -19,15 +19,14 @@
                             <a class="nav-link" href="#">INICIO<span class="sr-only">(home)</span></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">CAMBIAR CONSTRASEÑA</a>
+                            <a class="nav-link" href="#" onclick="modalPass()">CAMBIAR CONSTRASEÑA</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">NUEVO USUARIO</a>
+                            <a class="nav-link" href="#" onclick="modalNewUser()">NUEVO USUARIO</a>
                         </li>                        
                         </ul>
                     </div>
-                </nav>
-            </div>       
+                </nav>            
         </div>
 
         <div class="container">
@@ -38,7 +37,7 @@
           <!-- FORM TO ADD SERVICES -->
           <form id="form_services">
             <div class="form-group">
-              <input type="text" id="name" placeholder="nombre" class="form-control">
+              <input type="text" id="name_service" placeholder="nombre" class="form-control">
             </div>
             <div class="form-group">
               <input type="text" id="category" placeholder="categoria" class="form-control">
@@ -131,8 +130,71 @@
             </div>
         </div>
         </div>
-    
 
-    
+<div class="modal fade" id="Modal_pass" tabindex="-1" role="dialog" aria-labelledby="Modal_pass" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">CAMBIAR PASSWORD</h5>        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>       
+      </div>
+      <p id="alerta_modalpass" hidden >Los password no coinciden</p>
+      <div class="modal-body">            
+            <input type="hidden" name="correo" value=<?php  ?>>
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password">
+              <a href="#" onclick="verPass(1)"><img src="../../css/img/descarga.png" alt="ver" width="20" height="20"></a>
+            </div>
+            <div class="form-group">              
+              <label for="password_2">Confirmar Password</label>
+              <input type="password" name="password_2" id="password_2">
+              <a href="#" onclick="verPass(2)"><img src="../../css/img/descarga.png" alt="ver" width="20" height="20"></a>              
+            </div>            
+      </div>
+      <div class="modal-footer">    
+        <button type="button" class="btn btn-primary" onclick="changePass()">Cambiar Pass</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>    
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="Modal_newUser" tabindex="-1" role="dialog" aria-labelledby="Modal_newUser" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email">                            
+            </div>
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" name="nombre" id="nombre">                            
+            </div>
+            <div class="form-group">
+              <label for="permisos">Permisos</label>
+              <select name="permisos" id="permisos">
+                  <option value="">Adminsitrador</option>              
+              </select>
+            </div>
+      
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Crear Nuevo Usuario</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script src="../../js/pages/admin.js"></script>
 </body>
 </html>
