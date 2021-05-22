@@ -42,7 +42,7 @@ if(isset($_GET['action'])){
             case "login":
                 $estado =[];                    
                     $email = $_POST['email'];
-                    $password = $_POST['password'];                       
+                    $password = $_POST['pass'];                       
 
                     if ((!is_string($email) || !filter_var($email, FILTER_VALIDATE_EMAIL))) {
 
@@ -54,15 +54,13 @@ if(isset($_GET['action'])){
                     $params=["name", "email", "password", "permisos"];
                     $seletby=$newuser->selectbyparam($params, "email", $email);                    
                     if($seletby){
-
                         $hashDB = $seletby[0]['password'];
-
                         if (password_verify($password, $hashDB)) {
                             session_start();
                             $_SESSION['USUARIO'] = $seletby;
                             $estado=array("http"=>200, "mensaje"=>"contraseña correcta");                            
                         }else{
-                            $estado=array("http"=>400, "mensaje"=>"contraseña esta erronea");
+                            $estado=array("http"=>400, "mensaje"=>"contraseña esta erronea ");
                         }
                     }
                 echo json_encode($estado); 
