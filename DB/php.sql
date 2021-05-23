@@ -2,16 +2,18 @@ CREATE DATABASE itsys;
 
 USE itsys;
 
-CREATE TABLE servicios(
-    id INT (100) auto_increment NOT NULL,
-    name VARCHAR(100) NOT NULL,
-    description LONGTEXT NOT NULL,
-    category VARCHAR(100) NOT NULL,
-    imagen VARCHAR (200) NOT NULL,
-    tipo VARCHAR (200) NOT NULL,
-    CONSTRAINT  pk_id PRIMARY KEY (id)
-);
-
+CREATE TABLE itsys.services (
+	id int(100) auto_increment NOT NULL,
+	name varchar(100) NULL,
+	description LONGTEXT NULL,
+	category varchar(100) NULL,
+	imagen varchar(100) NULL,
+	type varchar(100) NULL,
+	CONSTRAINT services_PK PRIMARY KEY (id)
+)
+ENGINE=InnoDB
+DEFAULT CHARSET=utf8mb4
+COLLATE=utf8mb4_0900_ai_ci;
 
 CREATE TABLE tipos(
     id INT (100) auto_increment NOT NULL,

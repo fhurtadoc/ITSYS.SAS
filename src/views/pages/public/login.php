@@ -2,6 +2,7 @@
     <?php include_once("../../includes/headers.php") ?>   
    
     <link rel="stylesheet" href="../../css/login.css">
+    
 </head>
 <body>
     <div class="continer container">
@@ -16,8 +17,7 @@
         <div class="row">        
             <div class="col">
                 <div class="card_orient card" style="width: 18rem;">                    
-                    <div class="card-body">
-                            <form>
+                    <div class="card-body">                            
                                 <h3>LOGIN ITSYS.SAS </h3>
                                 <img src="../../../views/css/img/logoprincipal.png" alt="ITSYS" width="70" height="40" >
                                 <div class="form-group">
@@ -27,10 +27,9 @@
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
                                     <input type="password" class="form-control" id="Password_login" placeholder="Password">
-                                </div>                                                                                                
-                            </form>                            
+                                </div>     
                 </div>
-                    <button class="btn btn-primary" onclick="login()">Entrar</button>                    
+                    <a href="#" class="btn btn-primary" onclick="login()">Entrar</a>                    
                 </div> 
                 <button type="button" class="btn btn-link" data-dismiss="modal" onclick="modalForgot()">recordar contraseña</button>                
             </div>            

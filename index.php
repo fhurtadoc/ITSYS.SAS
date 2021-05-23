@@ -1,3 +1,3 @@
 <?php
 
-include_once('');
+include_once('src/views/pages/public/home.php');

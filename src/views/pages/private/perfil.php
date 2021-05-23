@@ -1,9 +1,24 @@
+<?php 
+session_start();
+$User=$_SESSION['USUARIO'];
+if (isset($_SESSION['USUARIO'])) {
+} else {
+    header("Location: ../public/login.php");
+}
+$name_user=$User[0]['name'];
+$permisos=$User[0]['permisos'];
+$email=$User[0]['email'];
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <?php include_once("../../includes/headers.php") ?>      
-    <link rel="stylesheet" href="../../css/admin.css"> 
+    <link rel="stylesheet" href="../../css/admin.css">     
     
 </head>
 <body>
@@ -22,8 +37,14 @@
                             <a class="nav-link" href="#" onclick="modalPass()">CAMBIAR CONSTRASEÑA</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" onclick="modalNewUser()">NUEVO USUARIO</a>
+                            <a class="nav-link" href="#" onclick="modalNewUser()">NUEVO USUARIO</a>                            
                         </li>                        
+                        <li>
+                            <p id="saludo">Bienvenido <strong><?php echo $name_user ?></strong></p>                        
+                        </li>
+                        <li>
+                            <a href="../../../controller/controllerLogin.php?action=cerrar" class="nav-link" >salir</a> 
+                        </li>
                         </ul>
                     </div>
                 </nav>            
@@ -36,7 +57,9 @@
         <div class="card-body">
           <!-- FORM TO ADD SERVICES -->
           <form id="form_services">
+          
             <div class="form-group">
+            
               <input type="text" id="name_service" placeholder="nombre" class="form-control">
             </div>
             <div class="form-group">
@@ -49,7 +72,7 @@
               <input type="file" id="imagen" placeholder="categoria" class="form-control" name=imagen>
             </div>
             <input type="hidden" id="taskId">
-            <button type="submit" class="btn btn-primary btn-block text-center bg-info text-white">
+            <button type="submit" class="btn btn-primary btn-block text-center bg-info text-white" >
               GUARDAR SERVICIO
             </button>
           </form>
@@ -72,6 +95,8 @@
                     <td>Nombre</td>
                     <td>Descripcion</td>
                     <td>Categoria</td>
+                    <td>Acciones</td>
+                    
                 </tr>
                 </thead>
                 <tbody id="services"></tbody>
@@ -88,6 +113,7 @@
                 <div class="card-body">
                 <!-- FORM TO ADD TASKS -->
                 <form id="form_products">
+                
                     <div class="form-group">
                     <input type="text" id="name_product" placeholder="nombre" class="form-control">
                     </div>
@@ -142,7 +168,7 @@
       </div>
       <p id="alerta_modalpass" hidden >Los password no coinciden</p>
       <div class="modal-body">            
-            <input type="hidden" name="correo" value=<?php  ?>>
+            <input type="hidden" name="email_hidden" id="email_hidden" value=<?php echo $email ?>>
             <div class="form-group">
               <label for="password">Password</label>
               <input type="password" name="password" id="password">
@@ -166,7 +192,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Crear Nuevo Usuario</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -183,12 +209,14 @@
             <div class="form-group">
               <label for="permisos">Permisos</label>
               <select name="permisos" id="permisos">
-                  <option value="">Adminsitrador</option>              
+                  <option value="administrador">Adminsitrador</option>              
+                  <option value="gestor">Gestor</option>              
+                  <option value="invitado">Invitado</option>              
               </select>
             </div>
       
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Crear Nuevo Usuario</button>
+        <button type="button" class="btn btn-primary" onclick="createUser()">Crear Nuevo Usuario</button>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
       </div>
     </div>

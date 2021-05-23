@@ -18,7 +18,13 @@ function login(){
         method:"post",
         data:data    
     }).done(function(res) {
-        console.log(res);        
+        let data=JSON.parse(res);        
+        if(data.http===200){                       
+            location.href = "../private/perfil.php"            
+        }else{
+            location.reload(); 
+            
+        }
     })
 }
 

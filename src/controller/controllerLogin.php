@@ -90,29 +90,13 @@ if(isset($_GET['action'])){
                     }                    
                 }
                 echo json_encode($estado); 
-                break;
-
-                case "chance_pass":                     
-                        $estado = [];
-                        if (!empty($_POST['password'])) {
-                            $password = $_POST['password'];
-                            $email = $_POST['email'];
-                            if ((!is_string($password) ||  strlen($password) < 5)) {
-                                $estado = array("http"=>400, "mensaje"=>"Ingrese pass correcto");
-                            } else {
-                                $hash = password_hash($password, PASSWORD_DEFAULT, ['cost' => 10]);
-                                $UPDATE = "UPDATE usuarios SET password='$hash' WHERE email='$email'";
-                                $update=$newuser->update($UPDATE);
-                                if ($update) {
-                                    $estado=array("http"=>200, "mensaje"=>"Se cambio la contraseña correctamente"); 
-                                } else {
-                                    $estado=array("http"=>400, "mensaje"=>"No se cambio la contraseña"); 
-                                }
-                            }
-                        }                        
-                        echo json_encode($estado); 
-                break;
-    
+                break;                
+                
+                case "cerrar":
+                    session_start();
+                    session_destroy();
+                    header("location: ../views/pages/public/login.php");            
+                break;    
 
 
                 

@@ -1,72 +1,57 @@
-<?php
-include_once("../model/services.php");
+    <?php
+    include_once("../model/services.php");
+    include_once("../../img/services");
 
-if(isset($_GET['action'])){
+    if(isset($_GET['action'])){
     $newService=new Services();
     switch($_GET['action']){
         case "new_service":
-            if (isset($_POST)) {
-                $estado = [];
-                if (!empty($_POST['name']) && !empty($_POST['description']) && !empty('category') && !empty('imagen')) {
-                    $name = $_POST['name'];
-                    $description = $_POST['description'];
-                    $category = $_POST['category'];
-                    $imagen = $_POST['imagen'];
-                    $type_service = $_POST['tipo'];
-                    if (!is_string($name) ||  !is_string($description) ||  !is_string($category) ||  !is_string($imagen)) {
-                        $estado=array("http"=>404, "mensaje"=>" ingrese la informacion correcta"); 
-                    } else {
-                        $nameFile =  $_FILES['file']['name'];
-                        $hoy = date("Ymdhms");
-                        $nameFile_finally = $hoy . "_" . $nameFile;
-                        //sacamos el tipo para hacer validacion de tipos de archivos 
-                        $tipo = $_FILES['file']['type'];
-                        $tipoArray = explode('/', $tipo);
-                        $tipofinal=$tipoArray[1];                      
-                        if ($tipofinal == "jpeg" || $tipofinal == "png" || $tipofinal== "gif") {                          
-                            if (move_uploaded_file($_FILES['file']["tmp_name"], "img/img_productos/" . $nameFile_finally)) {
-                                $InsertService=$newService->insert($name, $description, $category, $imagen, $nameFile_finally);                                 
-                                if ($InsertService) {
-                                    $estado=array("http"=>200, "mensaje"=>"se creo correctamente el $type_service");                            
-                                } else {
-                                    $estado=array("http"=>400, "mensaje"=>" No se creo correctamente el $type_service"); 
-                                }
+                $estado=[];            
+                $name=$_POST['name'];
+                $description=$_POST['description'];
+                $category=$_POST['category'];  
+                $type=$_POST['type'];  
+                $nameFile =  $_FILES['file']['name'];
+                if(isset($name) && isset($description) && isset($category) && isset($nameFile)){
+
+                        if (!is_string($name) ||  !is_string($description) ||  !is_string($category)) {
+                            $estado=array("http"=>400, "mensaje"=>"ingrese la informacion Correcta"); 
+                        }else{
+                            $hoy = date("Ymdhms");
+                            $nameFile_finally = $hoy . "_" . $nameFile;
+                            $tipo = $_FILES['file']['type'];
+                            $tipoArray = explode('/', $tipo);
+                            $tipofinal=$tipoArray[1];   
+                            if ($tipofinal == "jpeg" || $tipofinal == "png" || $tipofinal== "gif") {  
+                                if (move_uploaded_file($_FILES['file']["tmp_name"], "../../img/services/" . $nameFile_finally)) {
+                                    $insertService=$newService->insert($name, $description, $category, $nameFile_finally, $type);
+                                    $estado=array("http"=>200, "mensaje"=>"se creo correctamente");     
+                            }else{
+                                $estado=array("http"=>400, "mensaje"=>"el formato de la imagen no es correcto"); 
                             }
-                        }                       
-                    }                
-                }
-            }
-            echo json_encode($estado); 
-        break;
 
-        case "update_service":
-            
-        break;
-
-        case "delete_service":            
-                if (isset($_GET)) {
-                    $estado = [];
-                    if (!empty($_GET['id'])) {
-                        $id = (int)$_GET['id'];
-                        $delete_service=$newService->delete($id);
-                        if ($delete_service) {
-                            $estado=array("http"=>200, "mensaje"=>"Se elimino correctamente el servicio"); 
                         }
-                    } else {
-                        $estado=array("http"=>401, "mensaje"=>"No se elimino correctamente el servicio"); 
-                    }                
+                        
+                    }
                 }
                 echo json_encode($estado); 
-            break;
+            break;    
+        case "list_services":
+            $type=$_POST["type"];
+            $isql="SELECT * FROM services WHERE type='$type'";
+            $listService=$newService->select($isql);
+            echo json_encode($listService); 
+            break;    
 
-        break;
-
-        case "list_service":
-
-        break;
-
-
-
+        case "delete_service":
+                $id=$_POST["id"];
+                $delete=$newService->delete($id);
+                if($delete){
+                    $estado=array("http"=>200, "mensaje"=>"se elimino correctamente");     
+                }
+                break;  
+        
+        case "update_service":
+                    break; 
+        }
     }
-
-}

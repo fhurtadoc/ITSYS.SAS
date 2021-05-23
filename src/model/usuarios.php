@@ -19,7 +19,7 @@ class User{
         $this->$permisos=$permisos;        
 
         $sql="INSERT INTO usuarios (name, email, password, permisos)
-        VALUES ( $this->$name, $this->$email, $this->$password, $this->$permisos)";
+        VALUES ( '$name', '$email', '$password', '$permisos')";
         $res=$db->query($sql);
         if($res){
             return $res;
@@ -57,7 +57,7 @@ class User{
     public function update($query){ 
         $db= new Conexion;
         $sql=$query;
-        $res=$this->db->query($sql);
+        $res=$db->query($sql);
         if($res){
             return $res;
         }else{
