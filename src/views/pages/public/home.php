@@ -6,14 +6,14 @@
     <head>
         <meta charset="UTF-8">
         <title>ITSYS</title>
-        <?php include_once '../../includes/headers.php'; ?>
-        <script src="../../js/public.js"></script>  
-        <link rel="stylesheet" href="css/stylePublic.css" type="text/css">
+        <?php include_once _DOMAIN.'src/views/includes/headers.php'; ?>
+        <script src="<?php echo _DOMAIN ?>src/views/js/public.js"></script>  
+        <link rel="stylesheet" href="<?php echo _DOMAIN ?>src/views/css/stylePublic.css" type="text/css">
     </head>
 
     <body>
         <div class="continer">
-            <?php include_once 'views/includes/nav.php'; ?>
+            <?php include_once '../../includes/nav.php'; ?>
             <div class="slider-container">
                 <div class="contenido-slider">
                     <div>
@@ -74,7 +74,7 @@
                 </div>
 
             </div>
-            <?php include_once 'views/includes/footer.php'; ?>
+            <?php include_once _DOMAIN.'src/views/includes/footer.php'; ?>
         </div>
 
     </body>

@@ -1,0 +1,27 @@
+*{
+    margin: 0px;
+    padding: 0px;
+
+}
+.continer{
+    width: 100%;
+    /*overflow: hidden;*/    
+
+}
+
+.contenido-slider{
+    width: 100%;
+    height: 600PX;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.contenido-slider > img{
+    width: 600px;
+    height: 500px;
+}
+
+.contenido-slider > div{
+    width: 50%;
+
+}
