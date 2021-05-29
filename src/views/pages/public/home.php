@@ -7,7 +7,7 @@
         <meta charset="UTF-8">
         <title>ITSYS</title>
         <?php include_once '../../includes/headers.php'; ?>
-        <script src="js/public.js"></script>
+        <script src="../../js/public.js"></script>  
         <link rel="stylesheet" href="css/stylePublic.css" type="text/css">
     </head>
 
