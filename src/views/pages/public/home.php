@@ -6,9 +6,9 @@
     <head>
         <meta charset="UTF-8">
         <title>ITSYS</title>
-        <?php include_once _DOMAIN.'src/views/includes/headers.php'; ?>
-        <script src="<?php echo _DOMAIN ?>src/views/js/public.js"></script>  
-        <link rel="stylesheet" href="<?php echo _DOMAIN ?>src/views/css/stylePublic.css" type="text/css">
+        <?php include_once 'src/views/includes/headers_public.php'; ?>
+        <script src="src/views/js/public.js"></script>  
+        <link rel="stylesheet" href="src/views/css/stylePublic.css" type="text/css">
     </head>
 
     <body>
@@ -74,6 +74,7 @@
                 </div>
 
             </div>
+            
             <?php include_once _DOMAIN.'src/views/includes/footer.php'; ?>
         </div>
 
