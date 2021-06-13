@@ -38,7 +38,8 @@ $email=$User[0]['email'];
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" onclick="modalNewUser()">NUEVO USUARIO</a>                            
-                        </li>                        
+                        </li> 
+                                               
                         <li>
                             <p id="saludo">Bienvenido <strong><?php echo $name_user ?></strong></p>                        
                         </li>

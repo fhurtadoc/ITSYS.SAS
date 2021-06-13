@@ -7,13 +7,13 @@
         <meta charset="UTF-8">
         <title>ITSYS</title>
         <?php include_once 'src/views/includes/headers_public.php'; ?>
-        <script src="src/views/js/public.js"></script>  
+        <script src="src/views/js/pages/home.js"></script>  
         <link rel="stylesheet" href="src/views/css/stylePublic.css" type="text/css">
     </head>
 
     <body>
         <div class="continer">
-            <?php include_once '../../includes/nav.php'; ?>
+            <?php include_once 'src/views/includes/nav.php'; ?>
             <div class="slider-container">
                 <div class="contenido-slider">
                     <div>
@@ -75,7 +75,7 @@
 
             </div>
             
-            <?php include_once _DOMAIN.'src/views/includes/footer.php'; ?>
+            <?php include_once 'src/views/includes/footer.php'; ?>
         </div>
 
     </body>
