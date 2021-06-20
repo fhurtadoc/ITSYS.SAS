@@ -18,21 +18,21 @@
                 <div class="contenido-slider">
                     <div>
                         <h2>ITSYS</h2>
-                        <a href="">Servicios</a>
+                        <a href="solutions.php">Servicios</a>
                         <p class=contenido>conoce nuestros servicios</p>
                     </div>
                 </div>
                 <div class="contenido-slider">
                     <div>
                         <h2> ITSYS</h2>
-                        <a href="">Productos</a>
+                        <a href="solutions.php">Productos</a>
                         <p class=contenido>conoce nuestros productos</p>
                     </div>
                 </div>
                 <div class="contenido-slider">
                     <div>
                         <h2> ITSYS</h2>
-                        <a href="">Contacto</a>
+                        <a href="contact">Contacto</a>
                         <p class=contenido>contactanos para brindar soluciones para tu empresa o negocio</p>
                     </div>
                 </div>

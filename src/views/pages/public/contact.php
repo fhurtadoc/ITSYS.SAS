@@ -11,7 +11,7 @@
     </head>
 
     <body>
-    <?php include_once '../includes/nav.php'; ?>
+    <?php include_once '../../includes/nav.php'; ?>
     <div id=continer-contacto>
         <div id=form>
         <form class="myForm" action="" method="post">
@@ -35,7 +35,8 @@
         </form>
         </div>
     </div>
-    <?php include_once '../includes/footer.php'; ?>
+    <?php include_once '../../includes/footer.php'; ?>
+
     </body>
 
     </html>

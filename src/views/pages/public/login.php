@@ -11,7 +11,8 @@
                 ITSYS SAS 
             </div>            
             <div class="col">
-                REGRESAR
+
+                <a href="/../../index.php">REGRESAR</a>
             </div>
         </div>
         <div class="row">        
