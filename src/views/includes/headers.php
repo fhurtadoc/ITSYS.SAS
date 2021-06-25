@@ -1,10 +1,10 @@
 
- <?php include_once('config/config.php'); ?>
+ <?php include_once('../../../config/config.php'); ?>
 <meta charset="UTF-8">    
 <!--Jquery-->
 
-<script src="<?php _DOMAIN ?>../js/jquery-3.6.0.min.js" type="text/javascript"></script>
-<script src="<?php _DOMAIN ?>../js/jqueryui/jquery-ui.js" type="text/javascript"></script>
+<script src="../../js/jquery/jquery-3.5.1.min.js" type="text/javascript"></script>
+<script src="../../js/jqueryui/jquery-ui.js" type="text/javascript"></script>
 
 <!--boostrap-->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">

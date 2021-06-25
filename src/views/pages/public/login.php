@@ -1,5 +1,9 @@
 <head>
-    <?php include_once("../../includes/headers.php") ?>   
+
+    <?php 
+    include('../../../../config/config.php');
+    include(VIEWS."includes/headers.php");     
+    ?>   
    
     <link rel="stylesheet" href="../../css/login.css">
     

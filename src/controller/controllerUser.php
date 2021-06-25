@@ -1,6 +1,8 @@
 <?php
 include_once("../model/usuarios.php");
 
+
+
 if(isset($_GET['action'])){
     $newUser=new User();
     switch($_GET['action']){

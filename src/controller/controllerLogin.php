@@ -1,5 +1,6 @@
 <?php
 include_once("../model/usuarios.php");
+include($_SERVER['DOCUMENT_ROOT']."/config.php");
 if(isset($_GET['action'])){
     $newuser=new User();
     switch($_GET['action']){

@@ -1,5 +1,5 @@
 
- <?php include_once('config/config.php'); ?>
+
 <meta charset="UTF-8">    
 <!--Jquery-->
 

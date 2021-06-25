@@ -1,4 +1,6 @@
 <?php 
+include('../../../../config/config.php');
+
 session_start();
 $User=$_SESSION['USUARIO'];
 if (isset($_SESSION['USUARIO'])) {
@@ -9,7 +11,6 @@ $name_user=$User[0]['name'];
 $permisos=$User[0]['permisos'];
 $email=$User[0]['email'];
 
-
 ?>
 
 
@@ -17,8 +18,8 @@ $email=$User[0]['email'];
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <?php include_once("../../includes/headers.php") ?>      
-    <link rel="stylesheet" href="../../css/admin.css">     
+    <?php include_once(VIEWS."includes/headers.php");?>      
+    <link rel="stylesheet" href=<?php echo VIEWS."/css/admin.css";?>>     
     
 </head>
 <body>
